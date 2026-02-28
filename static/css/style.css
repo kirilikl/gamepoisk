@@ -47,3 +47,26 @@ footer{
     font-size: 1.5rem;
     font-weight: bold;;
 }
+
+h1{
+    color: #4caf50;
+    text-align: center;
+    margin-top: 20px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    width: 220px;
+    margin: 0 auto;
+}
+
+li{
+    background-color: bisque;
+    color: rgb(25, 25, 25);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
