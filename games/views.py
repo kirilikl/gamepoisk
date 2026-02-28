@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def game_list(request):
-    return HttpResponse("Это главная страница с играми")
+    return render(request, "games/game_list.html")
