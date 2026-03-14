@@ -1,23 +1,9 @@
 from django.shortcuts import render
-
-GAMES = [
-    "SugarCrash",
-    "Змейка",
-    "Сапёр",
-    "Смута",
-    "World of Tanks",
-    "Flight Simulator",
-    "WarCraft",
-    "Gardenscapes"
-]
+from .models import Game
 
 # Create your views here.
 def game_list(request):
-    query = request.GET.get("q")
-    if query:
-        filtered_games = [game for game in GAMES if query.lower() in game.lower()]
-    else:
-        filtered_games = GAMES
+    games = Game.objects.all()
 
-    context = {'games': filtered_games}
+    context = {'games': games}
     return render(request, "games/game_list.html", context)

@@ -7,14 +7,12 @@
         <button class="submit-button">Поиск</button>
     </form>
 </div>
-<h1>Список игр!</h1>
-<ul>
-    {% if games %}
+<div class="game-grid">
         {% for game in games %}
-            <li>{{game}}</li>
+            <a href="#" class="game-card">
+                <img class="game-image" src="{{ game.image.url }}" alt="{{ game.title }} cover">
+                <div class="game-title">{{ game.title }}</div>
+            </a>
         {% endfor %}
-    {% else %}
-        <li>Игор нету</li>
-    {% endif %}
-</ul>
+</div>
 {% endblock %}
