@@ -6,4 +6,5 @@ def game_list(request):
     games = Game.objects.all()
 
     context = {'games': games}
+    print(context)
     return render(request, "games/game_list.html", context)
