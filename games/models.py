@@ -22,8 +22,8 @@ class Game(models.Model):
     gpu_req = models.CharField(max_length=200, default="0", verbose_name="Видеокарта")
     disk_req = models.CharField(max_length=50, default="0", verbose_name="Место на жестком диске")
     slug = models.SlugField(max_length=200, unique=True, blank=True, verbose_name="URL-метка")
-    screenshots = models.ManyToManyField('Screenshot', blank=True, related_name='games', verbose_name="Скриншоты")
-    video_url = models.URLField(blank=True, verbose_name="Ссылка на видео")
+    #screenshots = models.ManyToManyField('Screenshot', blank=True, related_name='games', verbose_name="Скриншоты")
+    video_url = models.FileField(blank=True, upload_to="videos/" verbose_name="Ссылка на видео")
 
 
     def __str__(self):
