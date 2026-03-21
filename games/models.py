@@ -1,17 +1,30 @@
 from django.db import models
 from django.utils.text import slugify
 
-# Create your models here.
+
 class Game(models.Model):
-    title = models.CharField(max_length=255,
+    title = models.CharField(max_length=255, 
                              verbose_name="Название игры")
-    image = models.ImageField(upload_to='game_images',
-                              default='default.jpg',
+    image = models.ImageField(upload_to='game_images', 
+                              default='default.jpg', 
                               verbose_name="Изображение игры")
-    slug = models.SlugField(max_length=200,
-                            unique=True,
-                            blank=True,
-                            verbose_name="URL-метка")
+    
+    description = models.TextField(verbose_name="Краткое описание игры")
+    release_date = models.DateField(null=True, blank=True, verbose_name="Дата выхода")
+    genre = models.CharField(max_length=100, verbose_name="Жанр")
+    developer = models.CharField(max_length=100, verbose_name="Разработчик")
+    publisher = models.CharField(max_length=100, verbose_name="Издатель")
+    platform = models.CharField(max_length=255, verbose_name="Плафторма")
+    edition = models.CharField(max_length=100, verbose_name="Тип издания")
+    os_req = models.CharField(max_length=200, default="0", verbose_name="Операционная система")
+    cpu_req = models.CharField(max_length=200, default="0", verbose_name="Процессор")
+    ram_req = models.CharField(max_length=100, default="0", verbose_name="Оперативная память")
+    gpu_req = models.CharField(max_length=200, default="0", verbose_name="Видеокарта")
+    disk_req = models.CharField(max_length=50, default="0", verbose_name="Место на жестком диске")
+    slug = models.SlugField(max_length=200, unique=True, blank=True, verbose_name="URL-метка")
+    screenshots = models.ManyToManyField('Screenshot', blank=True, related_name='games', verbose_name="Скриншоты")
+    video_url = models.URLField(blank=True, verbose_name="Ссылка на видео")
+
 
     def __str__(self):
         return self.title
@@ -23,4 +36,4 @@ class Game(models.Model):
 
     class Meta:
         verbose_name = 'Игра'
-        verbose_name_plural = 'Игры'
+        verbose_name_plural = 'Игры'  
