@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="back-button">
+        <a href="{% url 'game_list' %}">
+            <svg width="48" height="48" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.008 10.996L2.004 7.992l5.004-2.996v1.997h6.996v1.998H7.008v2.005z" fill="#fff"></path>
+            </svg>
+        </a>
+        <h2 class="game-title">{{ game.title }}</h2>
+    </div>
+
+    <div class="game-details">
+        <div class="game-info">
+            <div class="game-image-text flex-container"> 
+                <img src="{{ game.image.url }}" alt="{{ game.title }}" class="game-image">
+                <div class="game-description">
+                    <p>{{ game.description }}</p>  
+                    <p><strong>Дата выхода:</strong> {{ game.release_date }}</p>
+                    <p><strong>Жанр:</strong> {{ game.genre }}</p>
+                    <p><strong>Разработчик:</strong> {{ game.developer }}</p>
+                    <p><strong>Издатель:</strong> {{ game.publisher }}</p>
+                    <p><strong>Платформа:</strong> {{ game.platform }}</p>
+                    <p><strong>Тип издания:</strong> {{ game.edition }}</p>
+                </div> 
+            </div>
+            <div class="system-requirements">
+                <h3>Системные требования:</h3>
+                <strong>Операционная система:</strong>  {{ game.os_req }}<br>
+                <strong>Процессор:</strong>  {{ game.cpu_req }}<br>
+                <strong>Оперативная память:</strong>  {{ game.ram_req }}<br>
+                <strong>Видеокарта:</strong>  {{ game.gpu_req }}<br>
+                <strong>Место на диске:</strong>  {{ game.disk_req }}
+            </div>
+        </div>
+        
+        <div class="game-media">
+            {% if game.video_url %}
+                <div class="youtube-video">
+                    <iframe width="560" height="315" src="{{ game.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
