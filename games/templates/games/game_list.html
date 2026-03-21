@@ -9,7 +9,7 @@
 </div>
 <div class="game-grid">
         {% for game in games %}
-            <a href="#" class="game-card">
+            <a href="{% url 'game_detail' game.id %}" class="game-card">
                 <img class="game-image" src="{{ game.image.url }}" alt="{{ game.title }} cover">
                 <div class="game-title">{{ game.title }}</div>
             </a>
