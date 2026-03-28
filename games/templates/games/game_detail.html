@@ -33,7 +33,7 @@
                 <strong>Место на диске:</strong>  {{ game.disk_req }}
             </div>
         </div>
-        
+
         <div class="game-media">
             {% if game.video_url %}
                 <div class="youtube-video">
@@ -43,7 +43,7 @@
             {% if screenshots %}
                 <div class="game-screenshots">
                     {% for screenshot in screenshots %}
-                        <a href="#" data-image="{{ screenshot.image.url }}" class="screenshot-link">  
+                        <a href="#" data-image="{{ screenshot.image.url }}" class="screenshot-link">
                             <img src="{{ screenshot.image.url }}" alt="{{ game.title }} screenshot" width="200" height="150">
                         </a>
                     {% endfor %}
@@ -51,4 +51,47 @@
             {% endif %}
         </div>
     </div>
+    <div class="modal" id="screenshotModal">
+        <span class="close">×</span>
+        <div class="modal-content">
+            <img src="" id="modalImage" alt="">
+        </div>
+    </div>
+        {% block script %} 
+    <script>
+        // Получаем ссылку на модаль
+        var modal = document.getElementById("screenshotModal");
+        // Получаем ссылку на кнопку закрытия модаля
+        var span = document.getElementsByClassName("close")[0];
+        // Обработчик клика по кнопке закрытия
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // Обработчик клика по области вне модаля
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        // Обработчик клика по ссылкам на скриншоты
+        var screenshotLinks = document.querySelectorAll(".screenshot-link");
+        screenshotLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Получаем URL изображения из атрибута data-image
+                var imageUrl = this.dataset.image;
+                console.log("URL изображения:", imageUrl);
+                // Устанавливаем изображение в модальное окно
+                var modalImage = document.getElementById("modalImage");
+                modalImage.src = imageUrl;
+                // Изменяем размер изображения
+                modalImage.style.width = "1000px";
+                modalImage.style.height = "600px";
+                // Открываем модаль
+                modal.style.display = "block";
+            });
+        });
+    </script>
+    {% endblock %}
+
 {% endblock %}
