@@ -37,8 +37,10 @@
         <div class="game-media">
             {% if game.video_url %}
                 <div class="youtube-video">
-                    <iframe width="560" height="315" src="{{ game.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+<video width="560" height="315" autoplay muted loop playsinline>
+            <source src="{{ game.video_url.url }}" type="video/mp4">
+            Ваш браузер не поддерживает тег video.
+        </video>                </div>
             {% endif %}
             {% if screenshots %}
                 <div class="game-screenshots">
