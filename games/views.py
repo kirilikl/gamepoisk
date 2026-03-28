@@ -11,7 +11,9 @@ def game_list(request):
 
 def game_detail(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
+    screenshot = game.screenshots.all()
     context = {
         "game": game,
+        "screenshots": screenshot
     }
     return render(request, "games/game_detail.html", context)
