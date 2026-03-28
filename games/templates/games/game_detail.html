@@ -40,6 +40,15 @@
                     <iframe width="560" height="315" src="{{ game.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
             {% endif %}
+            {% if screenshots %}
+                <div class="game-screenshots">
+                    {% for screenshot in screenshots %}
+                        <a href="#" data-image="{{ screenshot.image.url }}" class="screenshot-link">  
+                            <img src="{{ screenshot.image.url }}" alt="{{ game.title }} screenshot" width="200" height="150">
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
