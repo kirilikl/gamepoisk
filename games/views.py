@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Game
+from .models import Game, Screenshot
 
 # Create your views here.
 def game_list(request):
@@ -10,7 +10,7 @@ def game_list(request):
 
 def game_detail(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
-    screenshot = game.screenshots.all()
+    screenshot = Screenshot.objects.filter(game=game)
     context = {
         "game": game,
         "screenshots": screenshot
