@@ -69,6 +69,18 @@
         </form>
     </div>
     {% endif %}
+    <div class="comment-section"> 
+        <h3>Комментарии</h3>
+        <div>
+            {% for comment in comments %}
+                <p>
+                    <strong>{{ comment.author }}:</strong>
+                    {{ comment.content }}
+                    <span class="comment-date">({{ comment.created_at }})</span>
+                </p>
+            {% endfor %}
+        </div>
+    </div>   
     {% block script %}
     <script>
         // Получаем ссылку на модаль
