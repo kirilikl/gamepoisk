@@ -59,7 +59,17 @@
             <img src="" id="modalImage" alt="">
         </div>
     </div>
-    {% block script %} 
+    {% if user.is_authenticated %}
+    <div class="comment-section">
+        <h3>Оставить комментарий</h3>
+        <form method="POST" class="comment-form">
+            {% csrf_token %}
+            <textarea name="comment" placeholder="Ваш комментарий..."></textarea>
+            <button class="submit-button">Отправить</button>
+        </form>
+    </div>
+    {% endif %}
+    {% block script %}
     <script>
         // Получаем ссылку на модаль
         var modal = document.getElementById("screenshotModal");

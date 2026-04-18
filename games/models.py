@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from users.models import CustomUser
 
 
 class Game(models.Model):
@@ -47,3 +48,16 @@ class Screenshot(models.Model):
     class Meta:
         verbose_name = 'Скриншот'
         verbose_name_plural = 'Скриншоты'    
+
+class Comment(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.author} on {self.game}'
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
