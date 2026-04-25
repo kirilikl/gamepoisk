@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomUserUpdateForm
 
 def register(request):
     if request.method == 'POST':
@@ -46,7 +46,11 @@ def profile(request):
     user = request.user
 
     if request.method == 'POST':
-        pass
+        form = CustomUserUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Данные обновлены!')
+            return redirect('profile')
     else:
         form = CustomUserCreationForm(instance=user)
 
