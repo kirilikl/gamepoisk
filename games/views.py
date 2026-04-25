@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Game, Screenshot
+from .models import Game, Comment
 
 
 # Create your views here.
@@ -28,7 +28,7 @@ def game_detail(request, game_id):
             return redirect('add_to_library', game_id=game.id)
 
     comments = game.comment_set.all()
-    screenshots = game.screenshots.all()
+    screenshots = game.screenshot_set.all()
 
     context = {
         'game': game,
