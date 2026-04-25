@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
@@ -39,3 +40,19 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'До свидания.')
     return redirect('game_list')
+
+@login_required
+def profile(request):
+    user = request.user
+
+    if request.method == 'POST':
+        pass
+    else:
+        form = CustomUserCreationForm(instance=user)
+
+    context = {
+        'form': form,
+        'user': user,
+    }
+
+    return render(request, 'users/profile.html', context)

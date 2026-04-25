@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Game, Screenshot
 
+
 # Create your views here.
 def game_list(request):
     games = Game.objects.all()
@@ -35,3 +36,4 @@ def game_detail(request, game_id):
         'screenshots': screenshots,
     }
     return render(request, 'games/game_detail.html', context)
+

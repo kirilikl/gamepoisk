@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="profile-container">
+        <div class="profile-info">
+            <img src="{{ user.avatar.url }}" alt="Аватар" class="profile-avatar">
+            <h2>Мои данные</h2>
+            <ul>
+                <li><strong>Имя пользователя:</strong> {{ user.username }}</li>
+                <li><strong>Почта:</strong> {{ user.email }}</li>
+                <li><strong>Дата регистрация:</strong> {{ user.date_joined }}</li>
+                <li><strong>Последний визит:</strong> {{ user.last_visit }}</li>
+                <li><strong>Кол-во комментариев:</strong> {{ user.comment_count }}</li>
+                <li><strong>О себе:</strong> {{ user.bio }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
