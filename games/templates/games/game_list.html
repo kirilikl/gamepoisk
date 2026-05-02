@@ -7,12 +7,21 @@
         <button class="submit-button">Поиск</button>
     </form>
 </div>
-<div class="game-grid">
+
+{% if games %}
+    <div class="game-grid">
         {% for game in games %}
             <a href="{% url 'game_detail' game.id %}" class="game-card">
                 <img class="game-image" src="{{ game.image.url }}" alt="{{ game.title }} cover">
                 <div class="game-title">{{ game.title }}</div>
             </a>
         {% endfor %}
-</div>
+    </div>
+{% else %}
+    <div class="no-results-wrapper">
+        <p class="no-results">
+            К сожалению, по вашему запросу ничего не найдено
+        </p>
+    </div>
+{% endif %}
 {% endblock %}

@@ -1,13 +1,25 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
+
 from .models import Game, Comment
 
-
-# Create your views here.
 def game_list(request):
-    games = Game.objects.all()
+    query = request.GET.get('q') 
 
-    context = {'games': games}
-    return render(request, "games/game_list.html", context)
+    if query:
+        games = Game.objects.filter(
+            Q(title__icontains=query) | 
+            Q(genre__icontains=query) | 
+            Q(developer__icontains=query) | 
+            Q(publisher__icontains=query)
+        )
+    else:
+        games = Game.objects.all()
+
+    context = {
+        'games': games
+    }
+    return render(request, 'games/game_list.html', context)
 
 def game_detail(request, game_id):
     game = get_object_or_404(Game, pk=game_id)

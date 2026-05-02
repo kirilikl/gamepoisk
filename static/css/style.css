@@ -417,3 +417,32 @@ footer{
     resize: none;
     box-sizing: border-box;
 }
+
+.no-results-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 36px;
+    color: #cfcfcf;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.comment-form textarea {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
